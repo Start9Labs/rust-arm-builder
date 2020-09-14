@@ -7,9 +7,18 @@ RUN apt-get update && \
         curl \
         wget \
         tar \
+        git \
+        gcc-7-arm-linux-gnueabihf \
         gcc-arm-linux-gnueabihf \
         openssl \
-        libssl-dev && \
+        libssl-dev \
+        gcc-arm-linux-gnueabihf \
+        binutils-arm-linux-gnueabi \
+        libc6-dev \
+        libc6-dev-i386 \
+        clang \
+        libclang-dev \
+        upx && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /tmp && \
@@ -25,10 +34,12 @@ ENV ARMV7_UNKNOWN_LINUX_GNUEABIHF_OPENSSL_INCLUDE_DIR=/tmp/openssl-1.1.1f/includ
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
-RUN ~/.cargo/bin/rustup target add armv7-unknown-linux-gnueabihf
 RUN ~/.cargo/bin/rustup install beta
 RUN ~/.cargo/bin/rustup install nightly
 RUN ~/.cargo/bin/rustup default stable
+RUN ~/.cargo/bin/rustup target add armv7-unknown-linux-gnueabihf --toolchain stable
+RUN ~/.cargo/bin/rustup target add armv7-unknown-linux-gnueabihf --toolchain beta
+RUN ~/.cargo/bin/rustup target add armv7-unknown-linux-gnueabihf --toolchain nightly
 
 ENV PATH=/root/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV TARGET_CC=arm-linux-gnueabihf-gcc
