@@ -45,6 +45,13 @@ ENV PATH=/root/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bin:/us
 ENV TARGET_CC=arm-linux-gnueabihf-gcc
 ENV TARGET_CXX=arm-linux-gnueabihf-g++
 
+ADD libavahi-client.so.3.2.9 /usr/arm-linux-gnueabihf/lib/libavahi-client.so.3.2.9
+RUN ln -s /usr/arm-linux-gnueabihf/lib/libavahi-client.so.3.2.9 /usr/arm-linux-gnueabihf/lib/libavahi-client.so
+RUN ln -s /usr/arm-linux-gnueabihf/lib/libavahi-client.so /usr/lib/gcc-cross/arm-linux-gnueabihf/7/libavahi-client.so
+ADD libavahi-common.so.3.5.3 /usr/arm-linux-gnueabihf/lib/libavahi-common.so.3.5.3
+RUN ln -s /usr/arm-linux-gnueabihf/lib/libavahi-common.so.3.5.3 /usr/arm-linux-gnueabihf/lib/libavahi-common.so
+RUN ln -s /usr/arm-linux-gnueabihf/lib/libavahi-common.so /usr/lib/gcc-cross/arm-linux-gnueabihf/7/libavahi-common.so
+
 ADD .cargo_config /root/.cargo/config
 
 RUN mkdir -p /home/rust/libs /home/rust/src
