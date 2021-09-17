@@ -1,8 +1,10 @@
-# Rust ARMv7 Build Container
+# Rust ARM64 Build Container
+
+This is a docker container required for cross-compiling Rust to aarch64 during the EmbassyOS build process.
 
 ## Installation
 ```
-source ./install.sh
+sudo ./build.sh
 ```
 
 ## Usage
