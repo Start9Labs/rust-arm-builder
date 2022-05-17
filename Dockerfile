@@ -95,5 +95,6 @@ RUN ln -s /usr/aarch64-linux-gnu/lib/libpcre.so /usr/lib/gcc-cross/aarch64-linux
 ADD .cargo_config /root/.cargo/config
 
 RUN mkdir -p /home/rust/libs /home/rust/src
+RUN git config --global --add safe.directory /home/rust/src
 
 WORKDIR /home/rust/src
