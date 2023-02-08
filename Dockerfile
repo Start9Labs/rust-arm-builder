@@ -98,3 +98,5 @@ RUN mkdir -p /home/rust/libs /home/rust/src
 RUN git config --global --add safe.directory /home/rust/src
 
 WORKDIR /home/rust/src
+
+RUN cargo install cargo-nextest
