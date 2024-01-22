@@ -1,4 +1,4 @@
-FROM rust:1.70.0
+FROM rust:1.75.0
 
 RUN dpkg --add-architecture arm64 && \
     dpkg --add-architecture amd64 && \
